@@ -23,9 +23,7 @@ season_episodes= ["HelpWanted", "ReefBlower", "Tea at the Treedome", "Bubblestan
   "Jellyfish Hunter",
   "The Fry Cook Games",
   "Squid on Strike",
-  "Sandy, SpongeBob, and the Worm"
-]
-const season3 = [
+  "Sandy, SpongeBob, and the Worm",
   "The Algae's Always Greener",
   "SpongeGuard on Duty",
   "Club SpongeBob",
@@ -63,7 +61,7 @@ const season3 = [
   "The Sponge Who Could Fly",
   "SpongeBob Meets the Strangler",
   "Pranks a Lot"
-];
+]
 
 with open('merged.txt', 'w') as outfile:
     for fname in season_episodes:
