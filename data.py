@@ -1,6 +1,1 @@
-import kagglehub
-
-# Download latest version
-path = kagglehub.dataset_download("mikhailgaerlan/spongebob-squarepants-completed-transcripts")
-
-print("Path to dataset files:", path)
+season1 = ["HelpWanted", "ReefBlower", "Tea at the Treedome", "Bubblestand", "Ripped Pants"]
