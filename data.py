@@ -1,6 +1,6 @@
 season1 = ["HelpWanted", "ReefBlower", "Tea at the Treedome", "Bubblestand", "Ripped Pants", "Jellyfishing", "Plankton!", "Naughty Nautical Neighbors", "Boating School", "Pizza Delivery", "Home Sweet Pineapple", "Mermaid Man and Barnacle Boy", "Pickles", "Hall Monitor", "Jellyfish Jam", "Sandy's Rocket", "Squeaky Boots", "Nature Pants", "Opoosite Day", "Culture Shock", "F.U.N", "MuscleBob BuffPants", "Squidward the Unfriendly Ghost", "The Chaperone", "Employee of the Mpnth", "Scaredy Pants", "I Was a Teenage Gary", "SB-129", "Karate Choppers", "Sleepy Time", "Suds", "Valentine's Day", "The Paper", "Arrgh!", "Rock Bottom", "Texas", "Walking Small", "Fools In April", "Neptune's Spatula", "Hooky", "Memaid Man and Barnacle Boy II"]
-const season2 = [
-  "Your Shoe's Untied", "Squid's Day Off","Something Smells","Bossy Boots","Big Pink Loser","Bubble Buddy","Dying for Pie","Imitation Krabs","Wormy","Patty Hype","Grandma's Kisses","Squidville", "Prehibernation Week "Life of Crime "Christmas Who?",
+season2 = [
+  "Your Shoe's Untied", "Squid's Day Off","Something Smells","Bossy Boots","Big Pink Loser","Bubble Buddy","Dying for Pie","Imitation Krabs","Wormy","Patty Hype","Grandma's Kisses","Squidville", "Prehibernation Week", "Life of Crime", "Christmas Who?",
   "Survival of the Idiots",
   "Dumped",
   "No Free Rides",
