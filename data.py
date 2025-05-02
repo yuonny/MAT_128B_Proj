@@ -62,6 +62,43 @@ season_episodes= ["HelpWanted", "ReefBlower", "Tea at the Treedome", "Bubblestan
   "SpongeBob Meets the Strangler",
   "Pranks a Lot"
 ]
+const season4 = [
+  "Fear of a Krabby Patty",
+  "Shell of a Man",
+  "The Lost Mattress",
+  "Krabs vs. Plankton",
+  "Have You Seen This Snail?",
+  "Skill Crane",
+  "Good Neighbors",
+  "Selling Out",
+  "Funny Pants",
+  "Dunces and Dragons",
+  "Mermaid Man and Barnacle Boy VI: The Motion Picture",
+  "Enemy In-Law",
+  "Patrick SmartPants",
+  "SquidBob TentaclePants",
+  "Krusty Towers",
+  "Mrs. Puff, You're Fired",
+  "Ghost Host",
+  "Wishing You Well",
+  "Karate Island",
+  "Whale of a Birthday",
+  "All That Glitters",
+  "New Leaf",
+  "Once Bitten",
+  "Bummer Vacation",
+  "Wigstruck",
+  "Squidtastic Voyage",
+  "That's No Lady",
+  "The Thing",
+  "Hocus Pocus",
+  "Driven to Tears",
+  "Rule of Dumb",
+  "Born to Be Wild",
+  "Best Frenemies",
+  "The Pink Purloiner",
+  "Squid Wood"
+];
 
 with open('merged.txt', 'w') as outfile:
     for fname in season_episodes:
