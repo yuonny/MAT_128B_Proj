@@ -25,6 +25,45 @@ season_episodes= ["HelpWanted", "ReefBlower", "Tea at the Treedome", "Bubblestan
   "Squid on Strike",
   "Sandy, SpongeBob, and the Worm"
 ]
+const season3 = [
+  "The Algae's Always Greener",
+  "SpongeGuard on Duty",
+  "Club SpongeBob",
+  "My Pretty Seahorse",
+  "Just One Bite",
+  "The Bully",
+  "Nasty Patty",
+  "Idiot Box",
+  "Mermaid Man and Barnacle Boy IV",
+  "Doing Time",
+  "Snowball Effect",
+  "One Krabs Trash",
+  "As Seen on TV",
+  "Can You Spare a Dime?",
+  "No Weenies Allowed",
+  "Squilliam Returns",
+  "Krab Borg",
+  "Rock-a-Bye Bivalve",
+  "Wet Painters",
+  "Krusty Krab Training Video",
+  "Party Pooper Pants",
+  "Chocolate with Nuts",
+  "Mermaid Man and Barnacle Boy V",
+  "New Student Starfish",
+  "Clams",
+  "Ugh",
+  "The Great Snail Race",
+  "Mid-Life Crustacean",
+  "Born Again Krabs",
+  "I Had an Accident",
+  "Krabby Land",
+  "The Camping Episode",
+  "Missing Identity",
+  "Plankton's Army",
+  "The Sponge Who Could Fly",
+  "SpongeBob Meets the Strangler",
+  "Pranks a Lot"
+];
 
 with open('merged.txt', 'w') as outfile:
     for fname in season_episodes:
