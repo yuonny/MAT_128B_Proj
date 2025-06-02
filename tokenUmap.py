@@ -8,7 +8,7 @@ import umap
 with open("tokens.pkl", "rb") as f:
     tokenized = pickle.load(f)
 
-# Train word2vec model
+# Train word2vec
 # Word2Vec learns how words relate to each other based on their usage in dialogue and creates vector embeddings for each word.
 
 """ 
