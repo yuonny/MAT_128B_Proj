@@ -4,8 +4,8 @@ import re
 import string
 import pickle 
 
-def main():
-    with open("merged.txt", 'r', encoding='utf-8') as file:
+def transcribe(filename, output):
+    with open(filename, 'r', encoding='utf-8') as file:
         script = file.read()
 
     # Use raw string literal r'' so that backslashes can be treated as literal characters
@@ -44,9 +44,10 @@ def main():
     which is a list of lists in this case, is preserved. It will make it easy for other scripts to obtain the tokens without
     having to reparse our data.
     """
-    with open("tokens.pkl", "wb") as f:
+    with open(output, "wb") as f:
         pickle.dump(tokenizedScript, f)
 
 
 if __name__ == "__main__":
-    main()
+    transcribe("new_spongebob.txt", "tokensNew.pkl")
+    transcribe("old_spongebob.txt", "tokensOld.pkl")

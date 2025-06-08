@@ -2,11 +2,22 @@ import pickle
 from gensim.models import Word2Vec
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import gaussian_kde
 import umap
+import seaborn as sns
+import csv
+
 
 # Load tokenized data 
-with open("tokens.pkl", "rb") as f:
-    tokenized = pickle.load(f)
+with open("tokensOld.pkl", "rb") as f:
+    tokenized1 = pickle.load(f)
+
+with open("tokensNew.pkl", "rb") as f:
+    tokenized2 = pickle.load(f)
+    
+    
+tokenized = tokenized1 + tokenized2
+
 
 # Train word2vec
 # Word2Vec learns how words relate to each other based on their usage in dialogue and creates vector embeddings for each word.
@@ -23,6 +34,7 @@ model = Word2Vec(tokenized, vector_size=100, window=5, min_count=1, workers=4)
 def sentence_vector(sentence, model):
     # Get the word2vec vector for each word in the sentence
     vectors = [model.wv[word] for word in sentence if word in model.wv]
+
     # Return the average of all word vectors which represents the full sentence
     return np.mean(vectors, axis=0) if vectors else np.zeros(model.vector_size)
 
@@ -37,12 +49,24 @@ fit_transform - this function turns out data to a UMAP
 """
 reduced = umap.UMAP(n_components=2, random_state=42).fit_transform(embedded)
 
+# this is how density is calculated 
+xy = np.vstack([reduced[:, 0], reduced[:, 1]])
+density = gaussian_kde(xy)(xy)
+
 # Plot UMAP. Early Seasons will be gold. Later seasons can be blue to fit spongebob's color palette (Possibly?)
 plt.figure(figsize=(10, 7))
-plt.scatter(reduced[:, 0], reduced[:, 1], c='gold', alpha=0.6, label='Early Seasons')
-plt.title("UMAP of Early SpongeBob Dialogue")
+plt.scatter(reduced[:, 0], reduced[:, 1], alpha=0.6, c = density, label='2D Condensesed Data Points')
+plt.title("UMAP of SpongeBob Dialogue")
 plt.xlabel("UMAP-1")
 plt.ylabel("UMAP-2")
 plt.legend()
 plt.tight_layout()
+
+
+# sns.scatterplot(x = reduced[:,0], y = reduced[:,1])
+# plt.show()
+
+# sns.kdeplot(x=reduced[:, 0], y=reduced[:, 1], cmap='plasma', fill=True, alpha=0.6)
+# sns.kdeplot(x=reduced[:, 0], y=reduced[:, 1], color='white', alpha=0.4, linewidths=0.5)
+
 plt.show()
