@@ -3,6 +3,8 @@
 import re
 import string
 import pickle 
+import csv
+
 
 def transcribe(filename, output):
     with open(filename, 'r', encoding='utf-8') as file:
@@ -35,10 +37,13 @@ def transcribe(filename, output):
             cleanWord = word.strip(string.punctuation).lower()
             if cleanWord:
                 tokenizedLine.append(cleanWord.lower())
-
         if len(tokenizedLine) > 0:
             tokenizedScript.append(tokenizedLine)
-
+            
+    # with open("tokenizedScript.txt" , "w", newline = '', encoding="utf-8") as file:
+    #     for line in tokenizedScript:
+    #         file.write(" ".join(line) + "\n")
+        
     """ 
     So we want to save our tokens into a pickle (.pkl) file such that the data structure in which we saved our tokens in,
     which is a list of lists in this case, is preserved. It will make it easy for other scripts to obtain the tokens without

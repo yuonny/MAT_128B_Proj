@@ -101,7 +101,14 @@ season_episodes= ["HelpWanted", "ReefBlower", "Tea at the Treedome", "Bubblestan
   "Squid Wood"
 ]
 
-spongebob_s9_to_s13 = [
+spongebob_s8_to_s13 = [
+    # Season 8
+    "Accidents Will Happen", "The Other Patty",
+    "Drive Thru", "The Hot Shot",
+    "A Friendly Game", "Sentimental Sponge",
+    "Frozen Face‑Off",
+    "Squidward's School for Grown‑Ups", "Oral Report",
+    "Sweet and Sour Squid",
     # Season 9
     "Extreme Spots", "Squirrel Record", "Patrick-Man!", "Gary's New Toy",
     "License to Milkshake", "Squid Baby", "Little Yellow Book", "Bumper to Bumper",
@@ -186,7 +193,7 @@ with open('old_spongebob.txt', 'w') as outfile:
             continue
         
 with open('new_spongebob.txt', 'w') as outfile:
-    for fname in spongebob_s9_to_s13 :
+    for fname in spongebob_s8_to_s13 :
         fname = re.sub(r'[\W_]', '', fname)
         fname += ".txt"
         path = "SpongeBob_SquarePants_Transcripts/"
