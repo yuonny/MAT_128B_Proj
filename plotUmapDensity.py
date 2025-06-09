@@ -1,0 +1,38 @@
+import pickle
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import gaussian_kde
+import csv
+import seaborn as sns
+from ot.sliced import sliced_wasserstein_distance
+
+# load UMAP data
+older_seasons_umap = np.load("umap_old.npy")
+newer_seasons_umap = np.load("umap_new.npy")
+
+def density_output(reduced_vectors, window_title):
+    # this is how density is calculated 
+    xy = np.vstack([reduced_vectors[:, 0], reduced_vectors[:, 1]])
+    density = gaussian_kde(xy)(xy)
+
+    fig = plt.figure(figsize=(10, 7))
+    fig.canvas.manager.set_window_title(window_title)
+    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = density, label='2D Condensed Data Points')
+    plt.title("UMAP of SpongeBob Dialogue")
+    plt.xlabel("UMAP-1")
+    plt.ylabel("UMAP-2")
+    plt.legend()
+    plt.tight_layout()
+    
+def calc_wasserstein(old_script, new_script):
+
+    sw_dist = sliced_wasserstein_distance(old_script, new_script,
+                                         n_projections=100)
+    return sw_dist
+
+print(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
+
+density_output(older_seasons_umap, "Older Seasons Transcript UMAP")
+density_output(newer_seasons_umap, "Newer Seasons Transcript UMAP")
+
+plt.show()
