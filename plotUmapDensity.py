@@ -28,6 +28,24 @@ def calc_max_density(density, reduced_vectors, token_file):
         tokenized = pickle.load(f)
     return tokenized[index]
 
+# find top 5 highest density sentences
+def calc_top_five_max_density(density, reduced_vectors, token_file):
+    # sort from highest to lowest densities
+    sorted_indices = np.argsort(density)[::-1]
+
+    top_five_indices = sorted_indices[:5]
+    
+    with open(token_file, "rb") as f:
+        tokenized = pickle.load(f)
+
+    top_five_sentences = []
+    for i in range(5):
+        idx = top_five_indices[i]
+        sentence = tokenized[idx]
+        top_five_sentences.append(sentence)
+        
+    return top_five_sentences
+
 
 def density_output(reduced_vectors, window_title):
     # this is how density is calculated 
@@ -60,8 +78,22 @@ def calc_wasserstein(old_script, new_script):
 
 print(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
 
-print(calc_max_density(calc_density(older_seasons_umap), older_seasons_umap,"tokensOld.pkl"))
-print(calc_max_density(calc_density(newer_seasons_umap),  newer_seasons_umap, "tokensNew.pkl"))
+older_seasons_density = calc_density(older_seasons_umap)
+top_sentences = calc_top_five_max_density(older_seasons_density, older_seasons_umap, "tokensOld.pkl")
+
+print("Top five dense sentences from older seasons:")
+for i, sentence in enumerate(top_sentences, 1):
+    print(f"{i}. ({len(sentence)} words) {' '.join(sentence)}")
+
+newer_seasons_density = calc_density(newer_seasons_umap)
+top_sentences = calc_top_five_max_density(newer_seasons_density, newer_seasons_umap, "tokensOld.pkl")
+print()
+print("Top five dense sentences from newer seasons:")
+for i, sentence in enumerate(top_sentences, 1):
+    print(f"{i}. ({len(sentence)} words) {' '.join(sentence)}")
+
+# print(calc_max_density(calc_density(older_seasons_umap), older_seasons_umap,"tokensOld.pkl"))
+# print(calc_max_density(calc_density(newer_seasons_umap),  newer_seasons_umap, "tokensNew.pkl"))
 
 # plot_output(older_seasons_umap)
 # plot_output(newer_seasons_umap)

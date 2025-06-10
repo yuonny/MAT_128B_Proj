@@ -5,7 +5,6 @@ import string
 import pickle 
 import csv
 
-
 def transcribe(filename, output):
     with open(filename, 'r', encoding='utf-8') as file:
         script = file.read()
