@@ -1,4 +1,4 @@
-# import trainAndSaveUMAP
+import train_and_save_umap
 import numpy as np
 from ot.sliced import sliced_wasserstein_distance
 import matplotlib.pyplot as plt
@@ -8,25 +8,51 @@ def calc_wasserstein(old_script, new_script):
                                          n_projections=100)
     return sw_dist
 
-# old_tokens, old_model = trainAndSaveUMAP.train_word2vec("tokensOld.pkl")
-# # save newer seasons UMAP output
-# new_tokens, new_model = trainAndSaveUMAP.train_word2vec("tokensNew.pkl")
+
+def calc_plot_change_over_time():
+    old_tokens, old_model = train_and_save_umap.train_word2vec("old_seasons_tokens.pkl")
+    # save newer seasons UMAP output
+    new_tokens, new_model = train_and_save_umap.train_word2vec("new_seasons_tokens.pkl")
 
 
+    x = np.arange(1, 31)
+    dist_array = []
+    for i in x:
+        old_umap = train_and_save_umap.umap_upload(old_tokens, old_model, "umap_old.npy")
+        new_umap = train_and_save_umap.umap_upload(new_tokens, new_model, "umap_new.npy")
+            
+        older_seasons_umap = np.load("umap_old.npy")
+        newer_seasons_umap = np.load("umap_new.npy")
+        dist_array.append(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
 
-x = np.arange(1, 31)
-dist_array = [4.5005460976909, 4.38074088751021, 4.756634262374873, 4.879584333228202, 4.542216174280199, 5.020978301883416, 4.531689846305764, 4.696584729039377, 4.671533048006248, 4.676448512198163, 4.816565251431661, 4.792064787597063, 4.8749170668889406, 4.777681240214229, 4.414049974813187, 4.859511923249291, 4.852048828727659, 4.926681277071333, 4.68639870187505, 4.708680492150278, 4.973525891589486, 4.433567703855261, 4.814273545229755, 4.841265173158863, 4.894217204457215, 4.771143020137498, 4.6130304970009774, 4.6405628011985565, 4.76394982929893, 4.55282873866392]
-# for i in x:
-#     old_umap = trainAndSaveUMAP.umap_upload(old_tokens, old_model, "umap_old.npy")
-#     new_umap = trainAndSaveUMAP.umap_upload(new_tokens, new_model, "umap_new.npy")
+    plt.title("Wasserstein Distance Calculation Over Iterations")
+    plt.xlabel("Num Iteration") 
+    plt.ylabel("Wasserstein Distance")
+    plt.plot(x, dist_array, color ="blue") 
 
 
-#     older_seasons_umap = np.load("umap_old.npy")
-#     newer_seasons_umap = np.load("umap_new.npy")
-#     dist_array.append(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
+def calc_umap_diff(token_file, np_file, output_file_name, col , which_season):
+    tokens, model = train_and_save_umap.train_word2vec(token_file)
+    # save newer seasons UMAP output
+    x = np.arange(1, 31)
+    dist_array = []
+    older_seasons_umap = np.load(np_file)
+    for i in x:
+        train_and_save_umap.umap_upload(tokens, model, output_file_name)       
+        newer_seasons_umap = np.load(output_file_name)
+        dist_array.append(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
+    
+    plt.plot(x, dist_array, color = col, label=which_season) 
 
-plt.title("Wasserstein Distance Calculation Over Iterations")
-plt.xlabel("Num Iteration") 
-plt.ylabel("Wasserstein Distance")
-plt.plot(x, dist_array, color ="blue") 
+# calc_umap_diff("old_seasons_tokens.pkl", "umap_old.npy", "umap_old_new.npy", "blue", "Older Seasons")
+# calc_umap_diff("new_seasons_tokens.pkl", "umap_new.npy", "umap_new_new.npy", "gold", "Newer Seasons")
+
+# plt.title("Stability of UMAP projections under repeated runs")
+# plt.xlabel("Run Iteration") 
+# plt.ylabel("Wasserstein Distance")
+# plt.legend()
+
+calc_plot_change_over_time()
+
+
 plt.show()
