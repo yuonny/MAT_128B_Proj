@@ -46,7 +46,7 @@ def umap_upload(tokens, model, file_name):
     random_state - fixed random seed for reproducibility
     fit_transform - this function turns out data to a UMAP
     """
-    reduced = umap.UMAP(n_components=2, random_state=42).fit_transform(embedded)
+    reduced = umap.UMAP(n_components=2, random_state = 42).fit_transform(embedded)
 
     # save UMAP output as a numpy file
     np.save(file_name, reduced)

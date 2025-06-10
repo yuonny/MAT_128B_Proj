@@ -47,25 +47,25 @@ def calc_top_five_max_density(density, token_file):
     return top_five_sentences
 
 
-def density_output(reduced_vectors, window_title):
+def density_output(reduced_vectors, window_title, type):
     # this is how density is calculated 
     
     density = calc_density(reduced_vectors)
 
     fig = plt.figure(figsize=(10, 7))
     fig.canvas.manager.set_window_title(window_title)
-    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = density, label='2D Condensed Data Points')
-    plt.title("UMAP of SpongeBob Dialogue")
+    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = density)
+    plt.title("UMAP Density Plot of " + type + " SpongeBob Dialogue")
     plt.xlabel("UMAP-1")
     plt.ylabel("UMAP-2")
     plt.legend()
     plt.tight_layout()
 
-def plot_output(reduced_vectors):
+def plot_output(reduced_vector, type):
     # Plot UMAP. Early Seasons will be gold. Later seasons can be blue to fit spongebob's color palette (Possibly?)
     plt.figure(figsize=(10, 7))
-    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = 'gold', label='2D Condensesed Data Points')
-    plt.title("UMAP of SpongeBob Dialogue")
+    plt.scatter(reduced_vector[:, 0], reduced_vector[:, 1], alpha=0.6, c = 'gold')
+    plt.title("UMAP Scatterplot of " + type + " SpongeBob Dialogue")
     plt.xlabel("UMAP-1")
     plt.ylabel("UMAP-2")
     plt.legend()
@@ -97,9 +97,9 @@ for i, sentence in enumerate(top_sentences, 1):
 # print(calc_max_density(calc_density(older_seasons_umap), older_seasons_umap,"tokensOld.pkl"))
 # print(calc_max_density(calc_density(newer_seasons_umap),  newer_seasons_umap, "tokensNew.pkl"))
 
-# plot_output(older_seasons_umap)
-# plot_output(newer_seasons_umap)
-# density_output(older_seasons_umap, "Older Seasons Transcript UMAP")
-# density_output(newer_seasons_umap, "Newer Seasons Transcript UMAP")
+plot_output(older_seasons_umap, "Older Season")
+plot_output(newer_seasons_umap, "Newer Season")
+density_output(older_seasons_umap, "Older Seasons Transcript UMAP", "Older Season")
+density_output(newer_seasons_umap, "Newer Seasons Transcript UMAP", "Newer Season")
 
 plt.show()
