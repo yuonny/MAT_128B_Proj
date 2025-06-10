@@ -37,9 +37,9 @@ def umap_upload(tokens, model, file_name):
     return reduced
 
 # save older seasons UMAP output
-old_tokens, old_model = train_word2vec("tokensOld.pkl")
+old_tokens, old_model = train_word2vec("old_seasons_tokens.pkl")
 old_umap = umap_upload(old_tokens, old_model, "umap_old.npy")
 
 # save newer seasons UMAP output
-new_tokens, new_model = train_word2vec("tokensNew.pkl")
+new_tokens, new_model = train_word2vec("new_seasons_tokens.pkl")
 new_umap = umap_upload(new_tokens, new_model, "umap_new.npy")
