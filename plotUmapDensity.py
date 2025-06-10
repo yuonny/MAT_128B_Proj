@@ -29,7 +29,7 @@ def calc_max_density(density, reduced_vectors, token_file):
     return tokenized[index]
 
 # find top 5 highest density sentences
-def calc_top_five_max_density(density, reduced_vectors, token_file):
+def calc_top_five_max_density(density, token_file):
     # sort from highest to lowest densities
     sorted_indices = np.argsort(density)[::-1]
 
@@ -79,15 +79,17 @@ def calc_wasserstein(old_script, new_script):
 print(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
 
 older_seasons_density = calc_density(older_seasons_umap)
-top_sentences = calc_top_five_max_density(older_seasons_density, older_seasons_umap, "tokensOld.pkl")
+top_sentences = calc_top_five_max_density(older_seasons_density, "tokensOld.pkl")
 
 print("Top five dense sentences from older seasons:")
 for i, sentence in enumerate(top_sentences, 1):
     print(f"{i}. ({len(sentence)} words) {' '.join(sentence)}")
 
-newer_seasons_density = calc_density(newer_seasons_umap)
-top_sentences = calc_top_five_max_density(newer_seasons_density, newer_seasons_umap, "tokensOld.pkl")
 print()
+
+newer_seasons_density = calc_density(newer_seasons_umap)
+top_sentences = calc_top_five_max_density(newer_seasons_density, "tokensNew.pkl")
+
 print("Top five dense sentences from newer seasons:")
 for i, sentence in enumerate(top_sentences, 1):
     print(f"{i}. ({len(sentence)} words) {' '.join(sentence)}")
