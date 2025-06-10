@@ -79,7 +79,7 @@ def calc_wasserstein(old_script, new_script):
 print(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
 
 older_seasons_density = calc_density(older_seasons_umap)
-top_sentences = calc_top_five_max_density(older_seasons_density, "tokensOld.pkl")
+top_sentences = calc_top_five_max_density(older_seasons_density, "old_seasons_tokens.pkl")
 
 print("Top five dense sentences from older seasons:")
 for i, sentence in enumerate(top_sentences, 1):
@@ -88,7 +88,7 @@ for i, sentence in enumerate(top_sentences, 1):
 print()
 
 newer_seasons_density = calc_density(newer_seasons_umap)
-top_sentences = calc_top_five_max_density(newer_seasons_density, "tokensNew.pkl")
+top_sentences = calc_top_five_max_density(newer_seasons_density, "new_seasons_tokens.pkl")
 
 print("Top five dense sentences from newer seasons:")
 for i, sentence in enumerate(top_sentences, 1):
