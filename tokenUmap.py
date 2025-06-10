@@ -60,7 +60,17 @@ def density_output(reduced_vectors):
 
     # Plot UMAP. Early Seasons will be gold. Later seasons can be blue to fit spongebob's color palette (Possibly?)
     plt.figure(figsize=(10, 7))
-    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = density, label='2D Condensesed Data Points')
+    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = density, label='Density Plot')
+    plt.title("UMAP of SpongeBob Dialogue")
+    plt.xlabel("UMAP-1")
+    plt.ylabel("UMAP-2")
+    plt.legend()
+    plt.tight_layout()
+    
+def plot_output(reduced_vectors):
+    # Plot UMAP. Early Seasons will be gold. Later seasons can be blue to fit spongebob's color palette (Possibly?)
+    plt.figure(figsize=(10, 7))
+    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = 'gold', label='2D Condensesed Data Points')
     plt.title("UMAP of SpongeBob Dialogue")
     plt.xlabel("UMAP-1")
     plt.ylabel("UMAP-2")
@@ -69,14 +79,15 @@ def density_output(reduced_vectors):
     
 def calc_wasserstein(old_script, new_script):
     
-    sw_dist = sliced_wasserstein_distance(old_script, new_script,
-                                         n_projections=100)
+    sw_dist = sliced_wasserstein_distance(old_script, new_script, n_projections=100)
     return sw_dist
 
     
 
 print(calc_wasserstein(umap_upload(tokenized1),umap_upload(tokenized2)))
 
+plot_output(umap_upload(tokenized1))
+plot_output(umap_upload(tokenized2))
 density_output(umap_upload(tokenized1))
 density_output(umap_upload(tokenized2))
 

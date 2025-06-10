@@ -23,6 +23,16 @@ def density_output(reduced_vectors, window_title):
     plt.ylabel("UMAP-2")
     plt.legend()
     plt.tight_layout()
+
+def plot_output(reduced_vectors):
+    # Plot UMAP. Early Seasons will be gold. Later seasons can be blue to fit spongebob's color palette (Possibly?)
+    plt.figure(figsize=(10, 7))
+    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], alpha=0.6, c = 'gold', label='2D Condensesed Data Points')
+    plt.title("UMAP of SpongeBob Dialogue")
+    plt.xlabel("UMAP-1")
+    plt.ylabel("UMAP-2")
+    plt.legend()
+    plt.tight_layout()
     
 def calc_wasserstein(old_script, new_script):
 
@@ -32,6 +42,8 @@ def calc_wasserstein(old_script, new_script):
 
 print(calc_wasserstein(older_seasons_umap, newer_seasons_umap))
 
+plot_output(older_seasons_umap)
+plot_output(newer_seasons_umap)
 density_output(older_seasons_umap, "Older Seasons Transcript UMAP")
 density_output(newer_seasons_umap, "Newer Seasons Transcript UMAP")
 
