@@ -53,5 +53,5 @@ def transcribe(filename, output):
 
 
 if __name__ == "__main__":
-    transcribe("new_spongebob.txt", "tokensNew.pkl")
-    transcribe("old_spongebob.txt", "tokensOld.pkl")
+    transcribe("new_spongebob.txt", "new_seasons_tokens.pkl")
+    transcribe("old_spongebob.txt", "old_seasons_tokens.pkl")
