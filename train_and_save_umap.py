@@ -2,12 +2,28 @@ import pickle
 import numpy as np
 import umap
 from gensim.models import Word2Vec
+from pathlib import Path
 
 def train_word2vec(token_file):
-    with open(token_file, "rb") as f:
-        tokenized = pickle.load(f)
+    # hardcoded names
+    if token_file == "old_seasons_tokens.pkl":
+        model_file = "old_seasons_word2vec.model"
+    elif token_file == "new_seasons_tokens.pkl":
+        model_file = "new_seasons_word2vec.model"
 
-    model = Word2Vec(sentences=tokenized, vector_size=100, window=5, min_count=1, workers=4, seed=42)
+    # load the model if it already exists
+    if Path(model_file).exists():
+        print(f"Loading Word2Vec model from {model_file}")
+        model = Word2Vec.load(model_file)
+        with open(token_file, "rb") as f:
+            tokenized = pickle.load(f)
+    else:
+        print(f"Training new Word2Vec model and saving to {model_file}")
+        with open(token_file, "rb") as f:
+            tokenized = pickle.load(f)
+        model = Word2Vec(sentences=tokenized, vector_size=100, window=5, min_count=1, workers=4, seed=42)
+        model.save(model_file)
+
     return tokenized, model
 
 # input is the tokenized vector (either new or old spongebob)

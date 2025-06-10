@@ -70,7 +70,7 @@ def plot_output(reduced_vectors):
     plt.ylabel("UMAP-2")
     plt.legend()
     plt.tight_layout()
-    
+
 def calc_wasserstein(old_script, new_script):
     sw_dist = sliced_wasserstein_distance(old_script, new_script,
                                          n_projections=100)
